@@ -1,0 +1,33 @@
+\documentclass[a4paper,12pt]{ltjsarticle}
+
+% スタイルファイルの読み込み
+\input{style}
+
+% 本文サンプル
+\begin{document}
+\section{目的}
+
+MS明朝、Century、10.5ポイント、両端揃え。MS明朝、Century、10.5ポイント、両端揃え。MS明朝、Century、10.5ポイント、両端揃え。MS明朝、Century、10.5ポイント、両端揃え。両端揃え。両端揃え。両端揃え。両端揃え。両端揃え。
+
+\section{原理}
+実験の原理をここから書く。サンプルサンプル。サンプルサンプル。サンプルサンプル。
+
+\section{実験方法}
+ここに実験方法を記述します。船橋校舎を図\ref{fig:funabashi}に示す。
+\insertimage{funabashi.jpg}{船橋校舎}{funabashi}
+
+\section{結果}
+ここに実験結果を記述します。サンプルの表を表\ref{tab:sample-table}に示す。
+\inserttable{|c||c|c|}{サンプル表}{sample-table}{
+          & 項目1 & 項目2 \\ \hline\hline
+    項目3 & データ1 & データ2 \\ \hline
+    項目4 & データ3 & データ4 \\ \hline
+    項目5 & データ5 & データ6 \\
+}
+
+\insertsourcecode{Python}{サンプルコード}{sample-code}{./src/hello.py}
+
+\section{参考文献}
+ここに参考文献を記述します。
+
+\end{document}

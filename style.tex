@@ -1,0 +1,174 @@
+% =============================
+% 3年実験レポート用スタイルファイル（LuaLaTeX用）
+% =============================
+
+
+% === スタイル ===
+
+% --- ページレイアウト設定 ---
+\usepackage{geometry} % 余白・用紙サイズ
+\geometry{a4paper, top=2.65cm, bottom=2.6cm, left=2.2cm, right=1.9cm}
+
+% --- 段落先頭の字下げ設定 ---
+\usepackage{indentfirst}
+\setlength{\parindent}{1em}
+
+% --- フォント・日本語設定 ---
+\usepackage{luatexja} % LuaLaTeX日本語化
+\usepackage{luatexja-fontspec} % LuaLaTeX日本語フォント指定
+% 本文和文フォント：MS明朝
+\setmainjfont[Path=font/]{msmincho.ttc}
+% 本文欧文フォント：CENTURY
+\setmainfont[Path=font/]{CENTURY.TTF}
+
+% 字間調整（和文）
+\ltjsetparameter{kanjiskip=0.10em}
+
+% --- キャプションの設定 ---
+\usepackage{caption}
+\DeclareCaptionFont{gt}{\sffamily}
+\captionsetup{
+    font=gt,      % フォントをゴシック体に
+    labelfont=gt, % フォントをゴシック体に
+    labelsep=space% 番号とキャプションの間にスペースを入れる
+}
+
+% --- ハイパーリンク設定 ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=black,
+    citecolor=black
+}
+
+% --- 数式・画像 ---
+\usepackage{amsmath, amssymb} % 数式
+\usepackage{graphicx}         % 画像
+\graphicspath{{./img/}}       % imgフォルダ内の画像を読み込む
+
+% --- ヘッダー・フッター設定 ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{} % ヘッダー消去
+\fancyfoot{} % フッター消去
+\fancyfoot[C]{\thepage} % ページ番号中央
+\renewcommand{\headrulewidth}{0pt} % ヘッダーの線を消す
+% ページ番号の位置調整
+\setlength{\footskip}{40.5pt}
+
+% --- 行数・行間・本文サイズ ---
+% 本文フォントサイズを10.5ptに指定
+\renewcommand{\normalsize}{\fontsize{10.5pt}{18pt}\selectfont}
+\normalsize
+
+% --- 見出しフォント・サイズ設定 ---
+% MSゴシック（和文・欧文とも）を見出し用に指定
+\newfontfamily\msgtlatin[Path=font/]{msgothic.ttc}
+\newjfontfamily\msgtjpn[Path=font/]{msgothic.ttc}
+\usepackage{titlesec}
+% 見出し1：14pt番号の後ろにドット、見出し2：12pt、見出し3：11pt
+\titleformat{\section}{\msgtlatin\msgtjpn\fontsize{14pt}{16pt}\selectfont}{\thesection.}{1em}{}
+\titleformat{\subsection}{\msgtlatin\msgtjpn\fontsize{12pt}{14pt}\selectfont}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\msgtlatin\msgtjpn\fontsize{11pt}{13pt}\selectfont}{\thesubsubsection}{1em}{}
+% 見出し前後のスペース調整（上を広げる）
+\titlespacing*{\section}{0pt}{3em}{0.8em}
+
+% --- ソースコードのスタイル設定 ---
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+% カスタムカラーの定義
+\definecolor{codebg}{rgb}{0.95,0.95,0.92}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codeblue}{rgb}{0,0,0.8}
+% コード表示の設定
+\lstset{
+    backgroundcolor=\color{codebg},       % 背景色
+    basicstyle=\ttfamily\footnotesize,    % フォントスタイル
+    numbers=left,                         % 行番号を左側に表示
+    numberstyle=\tiny\color{codegray},    % 行番号のスタイル
+    numbersep=5pt,                        % 行番号とコードの間隔
+    frame=single,                         % 枠を表示
+    rulecolor=\color{codegray},           % 枠の色
+    framexleftmargin=1.5em,               % 枠内の左余白
+    xleftmargin=1.5em,                    % 全体の左余白
+    keywordstyle=\color{codeblue}\bfseries, % キーワードのスタイル
+    commentstyle=\color{codegreen}\itshape, % コメントのスタイル
+    stringstyle=\color{codepurple},       % 文字列のスタイル
+    breaklines=true,                      % 行の自動折り返し
+    showstringspaces=false,               % 文字列中のスペースを表示しない
+    captionpos=b                          % キャプションの位置を下に
+}
+
+
+% === 便利コマンド ===
+
+% --- 画像挿入 ---
+%
+% 引数:
+%     #1 画像ファイルのパス
+%     #2 キャプション
+%     #3 ラベル
+%
+% 使用例:
+%     \insertimage{experiment_result.jpg}{実験結果のグラフ}{fig:exp-result}
+% ※文章中で図番号を書きたい場合は「図\ref{fig:キャプション}」で自動的に図番号を参照できる。
+\newcommand{\insertimage}[3]{
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.8\linewidth]{#1}
+        \caption{#2}
+        \label{fig:#3}
+    \end{figure}
+}
+
+% --- 表挿入用カスタムコマンド ---
+%
+% 引数:
+%     #1 列の配置指定（例：|c|c|c|）
+%     #2 キャプション
+%     #3 ラベル
+%     #4 表の内容（行ごとに \\ で区切る）
+%
+% 使用例:
+%     \inserttable{|c|c|c|}{サンプル表}{sample-table}{
+%         項目1 & 項目2 & 項目3 \\
+%         データ1 & データ2 & データ3 \\
+%         データ4 & データ5 & データ6 
+%     }
+\newcommand{\inserttable}[4]{
+    \begin{table}[htbp]
+        \centering
+        \caption{#2}
+        \label{tab:#3}
+        \begin{tabular}{#1}
+        \hline
+        #4
+        \hline
+        \end{tabular}
+    \end{table}
+}
+
+% --- プログラム挿入用カスタムコマンド ---
+%
+% 引数:
+%     #1 プログラミング言語（例：Python、C++ など）
+%     #2 ​キャプション（図の説明）
+%     #3 ラベル
+%     #4 ​ソースコードファイル名（拡張子付き）
+%
+% 使用例:
+%     \insertsourcecode{Python}{サンプルコード}{sample-code}{./src/sample.py}
+\newcommand{\insertsourcecode}[4]{
+    \begin{figure}[htbp]
+        \centering
+        \captionsetup{type=figure}
+        \label{fig:#3}
+        \lstinputlisting[language=#1]{#4}
+        \caption{#2}
+    \end{figure}
+}
+\renewcommand{\lstlistingname}{図} % キャプションを図に変える
