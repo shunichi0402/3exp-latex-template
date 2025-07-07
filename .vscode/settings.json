@@ -1,5 +1,5 @@
 {
-    "cloudlatex.projectId": "各自のプロジェクトIDを入力",
+    "cloudlatex.projectId": 1061243,
     "cloudlatex.outDir": "out",
     "cloudlatex.enabled": true,
     "latex-workshop.latex.outDir": "out",
