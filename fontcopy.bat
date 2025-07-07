@@ -1,22 +1,22 @@
 @echo off
 setlocal
 
-REM ƒtƒHƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX
+REM ï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½Ìƒpï¿½X
 set "FONT_DIR=%windir%\Fonts"
 
-REM ƒoƒbƒ`ƒtƒ@ƒCƒ‹‚Ì‚ ‚éƒfƒBƒŒƒNƒgƒŠ‚ðŠî€‚É font ƒtƒHƒ‹ƒ_‚ðŽw’è
+REM ï¿½oï¿½bï¿½`ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½î€ï¿½ï¿½ font ï¿½tï¿½Hï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½wï¿½ï¿½
 set "DEST_DIR=%~dp0font"
 
-REM font ƒtƒHƒ‹ƒ_‚ª‚È‚¯‚ê‚Îì¬
+REM font ï¿½tï¿½Hï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½Îì¬
 if not exist "%DEST_DIR%" (
     mkdir "%DEST_DIR%"
 )
 
-REM ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹‚ðƒRƒs[
+REM ï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½sï¿½[
 copy "%FONT_DIR%\CENTURY.TTF" "%DEST_DIR%"
 copy "%FONT_DIR%\msgothic.ttc" "%DEST_DIR%"
 copy "%FONT_DIR%\msmincho.ttc" "%DEST_DIR%"
 
-echo ƒtƒHƒ“ƒg‚ÌƒRƒs[‚ªŠ®—¹‚µ‚Ü‚µ‚½B
+echo ï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ÌƒRï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 endlocal
 pause
